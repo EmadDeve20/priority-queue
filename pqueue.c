@@ -21,12 +21,11 @@ pp_queue create_queue(int value, long priority, void* data)
 		return new_p;
 	}
 	return NULL;
-
 }
 
 
-// TODO: update this function to set queue correctly
-pp_queue add_queue(pp_queue p, int value, long priority, void* data)
+// add new item to queue
+pp_queue add_queue(pp_queue *p, int value, long priority, void* data)
 {
 	pp_queue new_p = NULL;
 	new_p = (pp_queue) malloc(sizeof(p_queue));
@@ -35,7 +34,29 @@ pp_queue add_queue(pp_queue p, int value, long priority, void* data)
 		new_p->data = data;
 		new_p->value = value;
 		new_p->priority = priority;
-		p->next = new_p;
+		if (QEMPTY(*p) || (*p)->priority >= priority)
+		{
+			new_p->next = *p;
+			*p = new_p;
+		}
+		else
+		{
+			pp_queue p_next = *p;
+		       	pp_queue p_prev = NULL;
+			while (!QEMPTY(p_next))
+			{	
+				if (p_next->priority >= new_p->priority)
+					break;
+
+				p_prev = p_next;
+				p_next = p_next->next;
+			}
+			p_prev->next = new_p;
+			new_p->next = p_next;
+		}
+		MINIMUM_PRORITY = MINIMUM_PRORITY > priority || QUEUE_LENGTH == 0 ? priority : MINIMUM_PRORITY;
+		MAXIMUM_PRORITY = MAXIMUM_PRORITY < priority || QUEUE_LENGTH == 0 ? priority : MAXIMUM_PRORITY;	
+		QUEUE_LENGTH++;
 		return new_p;
 	}
 	return NULL;
