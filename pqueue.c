@@ -64,17 +64,19 @@ pp_queue enqueue(pp_queue *p, int value, long priority, void* data)
 
 
 // return 1 if queue is not empty otherwise 0
-int pop(pp_queue p, int* value, void* data)
+// TODO: update queue length and minimum and maximum priority
+int dequeue(pp_queue *p, int* value, void* data)
 {
-	if (p != NULL)
+	if (!QEMPTY(*p))
 	{
-		*value = p->value;
-		data = p->data;
-		pp_queue delete_p = p;
-		p = p->next;
+		*value = (*p)->value;
+		data = (*p)->data;
+		pp_queue delete_p = *p;
+		*p = (*p)->next;
 		free(delete_p);
 		return 1;
 	}
 	
 	return 0;
 }
+
