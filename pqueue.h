@@ -21,6 +21,6 @@ pp_queue create_queue(int value, long priority, void* data);
 
 pp_queue enqueue(pp_queue *p, int value, long priority,void* data);
 
-int pop(pp_queue p, int* value, void* data);
+int dequeue(pp_queue *p, int* value, void* data);
 
 #endif
