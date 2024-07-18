@@ -25,7 +25,7 @@ pp_queue create_queue(int value, long priority, void* data)
 
 
 // add new item to queue
-pp_queue add_queue(pp_queue *p, int value, long priority, void* data)
+pp_queue enqueue(pp_queue *p, int value, long priority, void* data)
 {
 	pp_queue new_p = NULL;
 	new_p = (pp_queue) malloc(sizeof(p_queue));
