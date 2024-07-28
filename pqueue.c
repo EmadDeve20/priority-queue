@@ -16,8 +16,9 @@ pp_queue create_queue(int value, long priority, void* data)
 		new_p->priority = priority;
 		
 		QUEUE_LENGTH++;
-		MINIMUM_PRORITY = MINIMUM_PRORITY > priority ? priority : MINIMUM_PRORITY;
-		MAXIMUM_PRORITY = MAXIMUM_PRORITY < priority ? priority : MAXIMUM_PRORITY;	
+		// TODO: dont save minimum and maximum built-in! return it or get a pointer to save it!
+		// because this is diffrent for any queue!
+		MINIMUM_PRORITY = MAXIMUM_PRORITY = priority;
 		return new_p;
 	}
 	return NULL;
