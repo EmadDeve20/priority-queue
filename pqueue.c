@@ -65,7 +65,6 @@ pp_queue enqueue(pp_queue *p, int value, long priority, void* data)
 
 
 // return 1 if queue is not empty otherwise 0
-// TODO: update queue length and minimum and maximum priority
 int dequeue(pp_queue *p, int* value, void* data)
 {
 	if (!QEMPTY(*p))
