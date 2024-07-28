@@ -73,7 +73,15 @@ int dequeue(pp_queue *p, int* value, void* data)
 		*value = (*p)->value;
 		data = (*p)->data;
 		pp_queue delete_p = *p;
+		QUEUE_LENGTH--;
 		*p = (*p)->next;
+		if (!(QEMPTY(*p)))
+		{
+			if (QEMPTY((*p)->next))
+				MINIMUM_PRORITY = MAXIMUM_PRORITY;
+			else
+				MINIMUM_PRORITY = (*p)->priority;
+		}
 		free(delete_p);
 		return 1;
 	}
